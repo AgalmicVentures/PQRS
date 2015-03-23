@@ -1,0 +1,99 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+	<style type="text/css">
+	span.refreshButton { font-size: small; text-align: right; float: right; position: relative; top: 6pt }
+	</style>
+
+	<title>PQRS - %(title)s</title>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-qrcode" aria-hidden="true" style="font-size: 0.8em"></span> Python QR Service</a>
+		</div>
+	</div>
+</nav>
+<br />
+<br />
+<br />
+
+<div class="container" style="width: 90%%">
+
+	<h1>Generate QR Code</h1>
+
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label for="data" class="col-sm-1 control-label">Data</label>
+			<div class="col-sm-11">
+				<textarea id="data" placeholder="Data" class="form-control"></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="errorCorrection" class="col-sm-1 control-label">Error Correction</label>
+			<div class="col-sm-11">
+				<select id="errorCorrection" class="form-control">
+					<option>L</option>
+					<option>M</option>
+					<option>Q</option>
+					<option>H</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="boxSize" class="col-sm-1 control-label">Box Size</label>
+			<div class="col-sm-11">
+				<input id="boxSize" value="10" placeholder="10" class="form-control">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="borderWidth" class="col-sm-1 control-label">Border Width</label>
+			<div class="col-sm-11">
+				<input id="borderWidth" value="4" placeholder="4" class="form-control">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-1 col-sm-11">
+				<button class="btn btn-primary" onclick="javascript:generate()">
+					<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+					Generate
+				</button>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="row col-sm-offset-1">
+				<div id="qrCode"></div>
+			</div>
+		</div>
+	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script>
+		function generate() {
+			data = $('#data').val();
+			if (data != '') {
+				errorCorrection = $('#errorCorrection').val();
+				boxSize = $('#boxSize').val();
+				borderWidth = $('#borderWidth').val();
+				$('#qrCode').load(encodeURI('/qrCode?errorCorrection=' + errorCorrection + '&boxSize=' + boxSize + '&borderWidth=' + borderWidth + '&data=' + data));
+			}
+			return false;
+		}
+	</script>
+</div>
+</body>
+</html>
