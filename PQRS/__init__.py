@@ -3,7 +3,7 @@
 import cherrypy
 import sys
 
-import application
+import Application
 
 def main():
 	print('Starting up PQRS...')
@@ -13,7 +13,7 @@ def main():
 		'server.socket_port': 27181,
 	})
 
-	pqrs = application.PqrsApplication()
+	pqrs = Application.PqrsApplication()
 	cherrypy.quickstart(pqrs)
 
 	print('Shutting down PQRS...')
