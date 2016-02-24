@@ -1,0 +1,2 @@
+CherryPy==3.8.1
+qrcode==5.2.2
