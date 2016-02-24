@@ -8,13 +8,8 @@ import Application
 def main():
 	print('Starting up PQRS...')
 
-	cherrypy.config.update({
-		'server.socket_host': '0.0.0.0',
-		'server.socket_port': 27181,
-	})
-
 	pqrs = Application.PqrsApplication()
-	cherrypy.quickstart(pqrs)
+	cherrypy.quickstart(pqrs, config='server.conf')
 
 	print('Shutting down PQRS...')
 	return 0
