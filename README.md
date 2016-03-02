@@ -1,6 +1,8 @@
 # PQRS (Python QR Service)
 PQRS is a [QR code](http://en.wikipedia.org/wiki/QR_code) generation microservice in Python 3 built on CherryPy. For testing and convenience, it includes a human-usable front end.
 
+For an open PQRS server, go to https://www.agalmicventures.com:9443/.
+
 ## API
 
 ### `/qrCode`
