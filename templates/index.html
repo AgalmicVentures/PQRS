@@ -3,10 +3,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-	<style type="text/css">
-	span.refreshButton { font-size: small; text-align: right; float: right; position: relative; top: 6pt }
-	</style>
-
 	<title>PQRS - %(title)s</title>
 </head>
 <body>
@@ -74,6 +70,13 @@
 		</div>
 
 		<div class="form-group">
+			<label for="borderWidth" class="col-sm-1 control-label">URL</label>
+			<div class="col-sm-11">
+				<input id="qrCodeUrl" placeholder="/qrCode?..." class="form-control" readonly>
+			</div>
+		</div>
+
+		<div class="form-group">
 			<div class="row col-sm-offset-1">
 				<div id="qrCode"></div>
 			</div>
@@ -84,12 +87,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script>
 		function generate() {
-			data = $('#data').val();
+			var data = $('#data').val();
 			if (data != '') {
-				errorCorrection = $('#errorCorrection').val();
-				boxSize = $('#boxSize').val();
-				borderWidth = $('#borderWidth').val();
-				$('#qrCode').load(encodeURI('/qrCode?errorCorrection=' + errorCorrection + '&boxSize=' + boxSize + '&borderWidth=' + borderWidth + '&data=' + data));
+				var errorCorrection = $('#errorCorrection').val();
+				var boxSize = $('#boxSize').val();
+				var borderWidth = $('#borderWidth').val();
+				var url = encodeURI('/qrCode?errorCorrection=' + errorCorrection + '&boxSize=' + boxSize + '&borderWidth=' + borderWidth + '&data=' + data);
+				$('#qrCodeUrl').val(url);
+				$('#qrCode').load(url);
 			}
 			return false;
 		}
