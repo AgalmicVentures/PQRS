@@ -45,8 +45,6 @@ function stop {
 	exit
 	fi
 
-	set -e
-
 	PID=`echo $PROCESSES | awk '{print $1}'`
 	kill $@ $PID
 }
