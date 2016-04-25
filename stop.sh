@@ -1,6 +1,7 @@
 #!/bin/bash
 
-PROCESSES=`ps xa | grep PQRS/__init__.py | grep -v grep`
+CWD=`pwd`
+PROCESSES=`ps xa | grep $CWD/PQRS/__init__.py | grep -v grep`
 if [[ $? -eq 1 ]]; then
 	echo "Not running"
 	exit
