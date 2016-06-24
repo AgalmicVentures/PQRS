@@ -5,7 +5,7 @@ import qrcode
 import qrcode.constants
 import qrcode.image.svg
 
-class PqrsApplication:
+class PqrsApplication(object):
 
 	def __init__(self):
 		with io.open('./templates/index.html') as indexTemplateFile:
