@@ -35,6 +35,8 @@
       dest: /home/pqrs/Code/OpenSource/PQRS/
     become: yes
     become_user: pqrs
+    notify:
+      - restart PQRS
 
   - name: Creating virtual environment
     pip:
@@ -43,6 +45,8 @@
       requirements: /home/pqrs/Code/OpenSource/PQRS/requirements.txt
     become: yes
     become_user: pqrs
+    notify:
+      - restart PQRS
 
   - name: Creating systemd service
     file:
@@ -56,3 +60,9 @@
       name: pqrs
       state: started
       daemon_reload: yes
+
+  handlers:
+  - name: restart PQRS
+    systemd:
+      name: pqrs
+      state: restarted
