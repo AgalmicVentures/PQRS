@@ -57,6 +57,7 @@ docs/_build/
 target/
 
 # Other
+myenv/
 nohup.out
 .DS_store
 
