@@ -37,6 +37,8 @@
   become_user: pqrs
   notify:
     - restart pqrs
+  tags:
+    - pqrs
 
 - name: Creating virtual environment
   pip:
@@ -47,6 +49,8 @@
   become_user: pqrs
   notify:
     - restart pqrs
+  tags:
+    - pqrs
 
 - name: Creating systemd service
   file:
@@ -54,6 +58,8 @@
     dest: /lib/systemd/system/pqrs.service
     state: link
     force: yes
+  tags:
+    - pqrs
 
 - name: Starting service
   systemd:
@@ -61,3 +67,5 @@
     state: started
     daemon_reload: yes
     enabled: yes
+  tags:
+    - pqrs
