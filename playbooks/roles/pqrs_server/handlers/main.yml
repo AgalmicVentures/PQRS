@@ -19,50 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-- hosts: all
-  tasks:
-  - name: Creating account
-    user:
-      name: pqrs
-      comment: PQRS
-      shell: /bin/bash
-      generate_ssh_key: yes
-      ssh_key_type: ed25519
-
-  - name: Cloning PQRS repository
-    git:
-      repo: https://github.com/AgalmicVentures/PQRS.git
-      dest: /home/pqrs/Code/OpenSource/PQRS/
-    become: yes
-    become_user: pqrs
-    notify:
-      - restart PQRS
-
-  - name: Creating virtual environment
-    pip:
-      virtualenv: /home/pqrs/Code/OpenSource/PQRS/myenv
-      virtualenv_command: pyvenv
-      requirements: /home/pqrs/Code/OpenSource/PQRS/requirements.txt
-    become: yes
-    become_user: pqrs
-    notify:
-      - restart PQRS
-
-  - name: Creating systemd service
-    file:
-      src: /home/pqrs/Code/OpenSource/PQRS/system/pqrs.service
-      dest: /lib/systemd/system/pqrs.service
-      state: link
-      force: yes
-
-  - name: Starting service
-    systemd:
-      name: pqrs
-      state: started
-      daemon_reload: yes
-
-  handlers:
-  - name: restart PQRS
-    systemd:
-      name: pqrs
-      state: restarted
+- name: restart pqrs
+  systemd:
+    name: pqrs
+    state: restarted
+    daemon_reload: yes
