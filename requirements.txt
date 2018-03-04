@@ -1,2 +1,9 @@
-CherryPy==3.8.1
-qrcode==5.2.2
+cheroot==6.0.0
+CherryPy==14.0.0
+colorama==0.3.9
+more-itertools==4.1.0
+portend==2.2
+pytz==2018.3
+qrcode==5.3
+six==1.11.0
+tempora==1.10
