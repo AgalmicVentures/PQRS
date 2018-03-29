@@ -42,7 +42,7 @@
 
 - name: Creating virtual environment
   pip:
-    virtualenv: /home/pqrs/Code/OpenSource/PQRS/myenv
+    virtualenv: /home/pqrs/Code/OpenSource/PQRS/env
     virtualenv_command: pyvenv
     requirements: /home/pqrs/Code/OpenSource/PQRS/requirements.txt
   become: yes
